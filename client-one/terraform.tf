@@ -9,3 +9,8 @@ terraform {
     }
   }
 }
+
+provider "google" {
+  project = "double-gamma-490622-n2"
+  region  = "us-east1"
+}
