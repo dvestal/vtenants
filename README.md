@@ -13,6 +13,7 @@ All state is managed through **HCP Terraform** (HashiCorp Cloud Platform), which
 
 ```
 .
+├── bootstrap/        # Shared infrastructure that must exist before tenants are provisioned
 ├── modules/          # Low-level infrastructure primitives
 ├── applications/     # Higher-level application blueprints (compose modules)
 └── tenants/          # Per-tenant Terraform root configurations
@@ -82,9 +83,11 @@ A GitHub Actions workflow (`.github/workflows/validate.yml`) runs `terraform val
 │  check-matrix job                                   │
 │                                                     │
 │  Scans modules/ and applications/ for any           │
-│  directory containing a versions.tf file and        │
-│  verifies that every discovered path appears in     │
-│  the workflow's validate matrix.                    │
+│  directory containing a versions.tf file, and       │
+│  tenants/ and bootstrap/ for any directory          │
+│  containing a terraform.tf file, then verifies      │
+│  that every discovered path appears in the          │
+│  workflow's validate matrix.                        │
 │                                                     │
 │  → Fails fast if a new module version was added     │
 │    to the repo but not registered in the matrix.    │
@@ -99,11 +102,13 @@ A GitHub Actions workflow (`.github/workflows/validate.yml`) runs `terraform val
 │    2. terraform validate                            │
 │                                                     │
 │  Currently validated paths:                         │
+│    • bootstrap                                      │
 │    • modules/cloudfunction/v0.0.1                   │
 │    • modules/manageddb/v0.0.1                       │
 │    • modules/objectstorage/v0.0.1 – v0.0.3          │
 │    • applications/poseidon/v0.0.1 – v0.0.2          │
 │    • applications/zeus/v0.0.1                       │
+│    • tenants/client-one, client-two, template       │
 └─────────────────────────────────────────────────────┘
 ```
 

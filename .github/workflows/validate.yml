@@ -16,10 +16,10 @@ jobs:
       - name: Check all modules are in the matrix
         run: |
           # Modules/applications: every directory containing a versions.tf.
-          # Tenants: every directory containing a terraform.tf.
+          # Tenants + bootstrap: every directory containing a terraform.tf.
           discovered=$( {
             find modules applications -name versions.tf 2>/dev/null | xargs -I{} dirname {};
-            find tenants -name terraform.tf 2>/dev/null | xargs -I{} dirname {};
+            find tenants bootstrap -name terraform.tf 2>/dev/null | xargs -I{} dirname {};
           } | sort)
 
           # Extract the matrix entries from this workflow file.
@@ -58,6 +58,7 @@ jobs:
           - applications/poseidon/v0.0.1
           - applications/poseidon/v0.0.2
           - applications/zeus/v0.0.1
+          - bootstrap
           - tenants/client-one
           - tenants/client-two
           - tenants/template
