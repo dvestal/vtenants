@@ -34,6 +34,7 @@ module "my_function" {
 | `entry_point` | Function entry point | `string` | `"handler"` | no |
 | `available_memory_mb` | Memory for the function in MB | `number` | `256` | no |
 | `timeout` | Function timeout in seconds | `number` | `60` | no |
+| `trigger_http` | Trigger the function via HTTP. Event trigger support is a future enhancement. | `bool` | `true` | no |
 
 ## Outputs
 
@@ -50,4 +51,5 @@ module "my_function" {
 - Creates a `google_cloudfunctions_function` (1st gen) resource with a configurable runtime, entry point, memory, and timeout
 - Source archive is referenced from a GCS bucket; `source_archive_bucket` and `source_archive_object` are excluded from lifecycle drift detection to allow out-of-band code deployments without triggering a Terraform diff
 - Both source archive variables default to placeholder values, allowing the function to be created by Terraform as a skeleton and subsequently deployed to by CI/CD without Terraform involvement
+- Defaults to HTTP trigger (`trigger_http = true`); event trigger support is a future enhancement
 - Applies a `managed_by = "terraform"` label to the function

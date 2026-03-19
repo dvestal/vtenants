@@ -49,3 +49,9 @@ variable "timeout" {
   type        = number
   default     = 60
 }
+
+variable "trigger_http" {
+  description = "If true, the function is triggered via HTTP. Set to false to configure an event trigger instead (event_trigger support is a future enhancement)."
+  type        = bool
+  default     = true
+}

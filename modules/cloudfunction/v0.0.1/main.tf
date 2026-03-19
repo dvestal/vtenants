@@ -9,7 +9,7 @@ resource "google_cloudfunctions_function" "function" {
   source_archive_bucket = var.source_archive_bucket
   source_archive_object = var.source_archive_object
 
-  #   https_trigger {}
+  trigger_http          = var.trigger_http
 
   lifecycle {
     ignore_changes = [
