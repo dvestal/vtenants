@@ -6,7 +6,7 @@ A Terraform module that provisions a Google Cloud Storage (GCS) bucket with opin
 
 ```hcl
 module "my_bucket" {
-  source      = "git::https://github.com/dvestal/vplatform.git//modules/objectstorage/v0.0.3?ref=<tag>"
+  source      = "../../../modules/objectstorage/v0.0.3"
   project     = "my-gcp-project"
   bucket_name = "my-gcp-project-my-bucket"
 }

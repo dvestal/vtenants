@@ -43,11 +43,20 @@ Applications are higher-level Terraform modules that compose one or more primiti
 | `applications/poseidon` | Provisions the storage buckets required by the Poseidon workload (public documents and private assets). |
 | `applications/zeus` | Provisions the storage buckets required by the Zeus workload (public documents, a processing facility, and private assets). |
 
-Tenants reference applications—not individual modules—via a pinned Git source URL, for example:
+In a monorepo style environment, reference modules and applications via a local path, for example:
 
 ```hcl
 module "poseidon" {
-  source  = "git::https://github.com/dvestal/vplatform.git//applications/poseidon/v0.0.2"
+  source  = "../../../applications/poseidon/v0.0.2"
+  project = data.google_project.current.project_id
+}
+```
+
+In the future, when tenants are no longer collocated with the modules and applications (may have their own repo if teams grow and need further separation of concerns), they will reference applications—not individual modules—via a pinned Git source URL, for example:
+
+```hcl
+module "poseidon" {
+  source  = "git::https://github.com/dvestal/vplatform.git//applications/poseidon?ref=v0.0.2"
   project = data.google_project.current.project_id
 }
 ```

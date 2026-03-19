@@ -6,7 +6,7 @@ A Terraform application module that provisions shared infrastructure used across
 
 ```hcl
 module "pegasus" {
-  source  = "git::https://github.com/dvestal/vplatform.git//applications/pegasus/v0.0.1?ref=<tag>"
+  source  = "../../applications/pegasus/v0.0.1"
   project = "my-gcp-project"
 }
 ```

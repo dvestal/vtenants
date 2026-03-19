@@ -6,7 +6,7 @@ A Terraform module that provisions a Google Cloud Function (1st gen) with opinio
 
 ```hcl
 module "my_function" {
-  source = "git::https://github.com/dvestal/vplatform.git//modules/cloudfunction/v0.0.1?ref=<tag>"
+  source = "../../../modules/cloudfunction/v0.0.1"
 
   project               = "my-gcp-project"
   function_name         = "my-function"

@@ -6,7 +6,7 @@ A Terraform application module that provisions the cloud storage infrastructure 
 
 ```hcl
 module "zeus" {
-  source  = "git::https://github.com/dvestal/vplatform.git//applications/zeus/v0.0.1?ref=<tag>"
+  source  = "../../applications/zeus/v0.0.1"
   project = "my-gcp-project"
 }
 ```

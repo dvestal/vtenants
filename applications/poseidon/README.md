@@ -6,7 +6,7 @@ A Terraform application module that provisions the cloud storage infrastructure 
 
 ```hcl
 module "poseidon" {
-  source  = "git::https://github.com/dvestal/vplatform.git//applications/poseidon/v0.0.2?ref=<tag>"
+  source  = "../../applications/poseidon/v0.0.2"
   project = "my-gcp-project"
 }
 ```

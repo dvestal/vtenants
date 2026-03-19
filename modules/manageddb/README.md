@@ -6,7 +6,7 @@ A Terraform module that provisions a Cloud SQL PostgreSQL instance with opiniona
 
 ```hcl
 module "my_db" {
-  source = "git::https://github.com/dvestal/vplatform.git//modules/manageddb/v0.0.1?ref=<tag>"
+  source = "../../../modules/manageddb/v0.0.1"
 
   project           = "my-gcp-project"
   instance_name     = "my-postgres"
