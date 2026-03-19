@@ -58,6 +58,7 @@ jobs:
           - applications/poseidon/v0.0.1
           - applications/poseidon/v0.0.2
           - applications/zeus/v0.0.1
+          - applications/zeus/v0.0.2
           - bootstrap
           - tenants/client-one
           - tenants/client-two

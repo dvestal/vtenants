@@ -107,7 +107,7 @@ A GitHub Actions workflow (`.github/workflows/validate.yml`) runs `terraform val
 │    • modules/manageddb/v0.0.1                       │
 │    • modules/objectstorage/v0.0.1 – v0.0.3          │
 │    • applications/poseidon/v0.0.1 – v0.0.2          │
-│    • applications/zeus/v0.0.1                       │
+│    • applications/zeus/v0.0.1 – v0.0.2          │
 │    • tenants/client-one, client-two, template       │
 └─────────────────────────────────────────────────────┘
 ```

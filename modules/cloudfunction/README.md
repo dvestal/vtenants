@@ -27,8 +27,8 @@ module "my_function" {
 |------|-------------|------|---------|----------|
 | `project` | GCP project id | `string` | — | yes |
 | `function_name` | Name of the Cloud Function to create | `string` | — | yes |
-| `source_archive_bucket` | GCS bucket that contains the function source zip | `string` | — | yes |
-| `source_archive_object` | GCS object (zip) name containing function source | `string` | — | yes |
+| `source_archive_bucket` | GCS bucket that contains the function source zip. Only used on initial creation; subsequent deploys are managed outside Terraform. | `string` | `"placeholder"` | no |
+| `source_archive_object` | GCS object (zip) name containing function source. Only used on initial creation; subsequent deploys are managed outside Terraform. | `string` | `"placeholder.zip"` | no |
 | `region` | GCP region for the Cloud Function | `string` | `"us-central1"` | no |
 | `runtime` | Function runtime (e.g. `python39`, `nodejs18`) | `string` | `"python39"` | no |
 | `entry_point` | Function entry point | `string` | `"handler"` | no |
@@ -49,4 +49,5 @@ module "my_function" {
 - Initial implementation
 - Creates a `google_cloudfunctions_function` (1st gen) resource with a configurable runtime, entry point, memory, and timeout
 - Source archive is referenced from a GCS bucket; `source_archive_bucket` and `source_archive_object` are excluded from lifecycle drift detection to allow out-of-band code deployments without triggering a Terraform diff
+- Both source archive variables default to placeholder values, allowing the function to be created by Terraform as a skeleton and subsequently deployed to by CI/CD without Terraform involvement
 - Applies a `managed_by = "terraform"` label to the function

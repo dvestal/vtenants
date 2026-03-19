@@ -27,13 +27,15 @@ variable "entry_point" {
 }
 
 variable "source_archive_bucket" {
-  description = "GCS bucket that contains the function source zip"
+  description = "GCS bucket that contains the function source zip. Only used on initial creation; subsequent code deploys are managed outside Terraform."
   type        = string
+  default     = "placeholder"
 }
 
 variable "source_archive_object" {
-  description = "GCS object (zip) name containing function source"
+  description = "GCS object (zip) name containing function source. Only used on initial creation; subsequent code deploys are managed outside Terraform."
   type        = string
+  default     = "placeholder.zip"
 }
 
 variable "available_memory_mb" {
