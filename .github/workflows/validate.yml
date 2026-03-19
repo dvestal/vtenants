@@ -61,7 +61,6 @@ jobs:
           - applications/zeus/v0.0.1
           - applications/zeus/v0.0.2
           - applications/zeus/v0.0.3
-          - bootstrap
           - tenants/client-one
           - tenants/client-two
           - tenants/template
