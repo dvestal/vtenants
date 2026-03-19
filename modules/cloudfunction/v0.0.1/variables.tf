@@ -55,3 +55,9 @@ variable "trigger_http" {
   type        = bool
   default     = true
 }
+
+variable "service_account_email" {
+  description = "Service account email the Cloud Function runs as. Defaults to the project's Compute default SA if null — supply a dedicated SA if that account does not exist in the project."
+  type        = string
+  default     = null
+}

@@ -35,6 +35,7 @@ module "my_function" {
 | `available_memory_mb` | Memory for the function in MB | `number` | `256` | no |
 | `timeout` | Function timeout in seconds | `number` | `60` | no |
 | `trigger_http` | Trigger the function via HTTP. Event trigger support is a future enhancement. | `bool` | `true` | no |
+| `service_account_email` | Service account email the function runs as. If null, GCP uses the project's default Compute SA (which may not exist in newer projects). | `string` | `null` | no |
 
 ## Outputs
 
@@ -52,4 +53,5 @@ module "my_function" {
 - Source archive is referenced from a GCS bucket; `source_archive_bucket` and `source_archive_object` are excluded from lifecycle drift detection to allow out-of-band code deployments without triggering a Terraform diff
 - Both source archive variables default to placeholder values, allowing the function to be created by Terraform as a skeleton and subsequently deployed to by CI/CD without Terraform involvement
 - Defaults to HTTP trigger (`trigger_http = true`); event trigger support is a future enhancement
+- Accepts an optional `service_account_email`; when null the GCP default Compute SA is used (supply a dedicated SA if that account does not exist)
 - Applies a `managed_by = "terraform"` label to the function

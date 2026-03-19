@@ -30,6 +30,8 @@ module "zeus" {
 
 ### v0.0.2
 - Adds a `processor` Cloud Function (`modules/cloudfunction/v0.0.1`) for workload automation
+- Creates a dedicated `zeus-processor` service account for the function to run as
+- Grants the service account `roles/storage.objectAdmin` on all three zeus buckets
 - Introduces `source_archive_bucket` and `source_archive_object` input variables for the function source
 
 ### v0.0.1

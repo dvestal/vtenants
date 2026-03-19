@@ -10,6 +10,7 @@ resource "google_cloudfunctions_function" "function" {
   source_archive_object = var.source_archive_object
 
   trigger_http          = var.trigger_http
+  service_account_email = var.service_account_email
 
   lifecycle {
     ignore_changes = [
