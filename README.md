@@ -39,6 +39,7 @@ Applications are higher-level Terraform modules that compose one or more primiti
 
 | Application | Description |
 |---|---|
+| `applications/pegasus` | Provisions shared infrastructure — currently the GCS bucket used for Cloud Function source package uploads across applications. |
 | `applications/poseidon` | Provisions the storage buckets required by the Poseidon workload (public documents and private assets). |
 | `applications/zeus` | Provisions the storage buckets required by the Zeus workload (public documents, a processing facility, and private assets). |
 
@@ -106,8 +107,9 @@ A GitHub Actions workflow (`.github/workflows/validate.yml`) runs `terraform val
 │    • modules/cloudfunction/v0.0.1                   │
 │    • modules/manageddb/v0.0.1                       │
 │    • modules/objectstorage/v0.0.1 – v0.0.3          │
+│    • applications/pegasus/v0.0.1                    │
 │    • applications/poseidon/v0.0.1 – v0.0.2          │
-│    • applications/zeus/v0.0.1 – v0.0.2          │
+│    • applications/zeus/v0.0.1 – v0.0.3          │
 │    • tenants/client-one, client-two, template       │
 └─────────────────────────────────────────────────────┘
 ```
