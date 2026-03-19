@@ -1,13 +1,13 @@
-data "google_project" "current" {}
+# data "google_project" "current" {}
 
-module "poseidon" {
-  source = "../../applications/poseidon/v0.0.1"
+# module "poseidon" {
+#   source = "../../applications/poseidon/v0.0.1"
 
-  project = data.google_project.current.project_id
-}
+#   project = data.google_project.current.project_id
+# }
 
-module "zeus" {
-  source = "../../applications/zeus/v0.0.2"
+# module "zeus" {
+#   source = "../../applications/zeus/v0.0.2"
 
-  project = data.google_project.current.project_id
-}
+#   project = data.google_project.current.project_id
+# }
