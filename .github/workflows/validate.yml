@@ -1,0 +1,78 @@
+name: Validate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  check-matrix:
+    name: "check matrix coverage"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check all modules are in the matrix
+        run: |
+          # Modules/applications: every directory containing a versions.tf.
+          # Tenants: every directory containing a terraform.tf.
+          discovered=$( {
+            find modules applications -name versions.tf 2>/dev/null | xargs -I{} dirname {};
+            find tenants -name terraform.tf 2>/dev/null | xargs -I{} dirname {};
+          } | sort)
+
+          # Extract the matrix entries from this workflow file.
+          listed=$(grep -A 999 'matrix:' .github/workflows/validate.yml \
+            | grep -A 999 'module:' \
+            | grep '^\s*-\s' \
+            | sed 's/^\s*-\s*//' \
+            | sort)
+
+          missing=$(comm -23 <(echo "$discovered") <(echo "$listed"))
+
+          if [ -n "$missing" ]; then
+            echo "The following modules are not listed in the validate matrix:"
+            echo "$missing" | sed 's/^/  - /'
+            echo ""
+            echo "Add them to the 'matrix.module' list in .github/workflows/validate.yml"
+            exit 1
+          fi
+
+          echo "All modules are covered by the validate matrix."
+
+  validate:
+    name: "${{ matrix.module }}"
+    runs-on: ubuntu-latest
+    needs: check-matrix
+
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - modules/cloudfunction/v0.0.1
+          - modules/manageddb/v0.0.1
+          - modules/objectstorage/v0.0.1
+          - modules/objectstorage/v0.0.2
+          - modules/objectstorage/v0.0.3
+          - applications/poseidon/v0.0.1
+          - applications/poseidon/v0.0.2
+          - applications/zeus/v0.0.1
+          - tenants/client-one
+          - tenants/client-two
+          - tenants/template
+
+    defaults:
+      run:
+        working-directory: ${{ matrix.module }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: terraform init
+        run: terraform init -backend=false
+
+      - name: terraform validate
+        run: terraform validate
