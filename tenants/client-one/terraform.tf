@@ -5,7 +5,7 @@ terraform {
     organization = "vestalconsulting"
 
     workspaces {
-      name = "client-one"
+      name = "vtenants-client-two"
     }
   }
 }

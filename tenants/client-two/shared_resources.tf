@@ -1,20 +1,20 @@
-data "google_project" "current" {}
+# data "google_project" "current" {}
 
-module "pegasus" {
-  source = "../../applications/pegasus/v0.0.1"
+# module "pegasus" {
+#   source = "../../applications/pegasus/v0.0.1"
 
-  project = data.google_project.current.project_id
-}
+#   project = data.google_project.current.project_id
+# }
 
-module "poseidon" {
-  source = "../../applications/poseidon/v0.0.1"
+# module "poseidon" {
+#   source = "../../applications/poseidon/v0.0.1"
 
-  project = data.google_project.current.project_id
-}
+#   project = data.google_project.current.project_id
+# }
 
-module "zeus" {
-  source = "../../applications/zeus/v0.0.3"
+# module "zeus" {
+#   source = "../../applications/zeus/v0.0.3"
 
-  project                      = data.google_project.current.project_id
-  functionpackages_bucket_name = module.pegasus.functionpackages_bucket_name
-}
+#   project                      = data.google_project.current.project_id
+#   functionpackages_bucket_name = module.pegasus.functionpackages_bucket_name
+# }
