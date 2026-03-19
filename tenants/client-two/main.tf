@@ -7,7 +7,7 @@ module "poseidon" {
 }
 
 module "zeus" {
-  source = "../../applications/zeus/v0.0.1"
+  source = "../../applications/zeus/v0.0.2"
 
   project = data.google_project.current.project_id
 }
