@@ -5,12 +5,12 @@ terraform {
     organization = "vestalconsulting"
 
     workspaces {
-      name = "client-one"
+      name = "template"
     }
   }
 }
 
 provider "google" {
-  project = "avian-influence-490723-c6"
+  project = "CONFIGURE_ME"
   region  = "us-east1"
 }
